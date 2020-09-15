@@ -25,9 +25,6 @@ export default function Index({ users }) {
       <main className={styles.main}>
         <h1 className={styles.title}>List of users:</h1>
         <pre>{JSON.stringify(users, null, 2)}</pre>
-        <Link href="api/test">
-          <a>Go to /api/test route ➡</a>
-        </Link>
       </main>
 
     </div>

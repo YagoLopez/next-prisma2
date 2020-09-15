@@ -2,9 +2,16 @@
 import { PrismaClient } from '@prisma/client';
 
 export default async (req, res) => {
-  const prisma = new PrismaClient()
-  const users = await prisma.user.findMany()
+  try {
+    const prisma = new PrismaClient()
+    const users = await prisma.user.findMany()
 
-  res.statusCode = 200
-  res.json(users)
+    res.statusCode = 200
+    res.json(users)
+
+  } catch (e) {
+    res.statusCode = 500
+    res.send(e)
+    console.error(e)
+  }
 }

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build & npm run studio",
+    "build": "next build & yarn run studio",
     "start": "next start",
     "studio": "npx prisma studio"
   },

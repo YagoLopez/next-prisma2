@@ -3,7 +3,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const prisma = new PrismaClient()
   const users = await prisma.user.findMany({
     include: { posts: true }

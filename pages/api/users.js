@@ -3,9 +3,10 @@ import { PrismaClient } from '@prisma/client';
 
 export default async (req, res) => {
   try {
-    const prisma = new PrismaClient()
-    const users = await prisma.user.findMany()
-    res.status(200).json(users)
+    // const prisma = new PrismaClient()
+    // const users = await prisma.user.findMany()
+    // res.status(200).json(users)
+    res.status(200).json({"test": "hola"})
 
   } catch (error) {
     console.error(error)

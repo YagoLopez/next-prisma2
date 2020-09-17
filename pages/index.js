@@ -1,21 +1,19 @@
-// import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 
 export async function getServerSideProps(context) {
-  // const prisma = new PrismaClient()
-  // const users = await prisma.user.findMany({
-  //   include: { posts: true }
-  // })
-  // console.log('index context', context)
+  const prisma = new PrismaClient()
+  const users = await prisma.user.findMany({
+    include: { posts: true }
+  })
   return {
-    props: { }, // will be passed to the page component as props
+    props: { users }, // will be passed to the page component as props
   }
 }
 
-export default function Index(props) {
-  console.log('index props', props)
+export default function Index({ users = {} }) {
 
   return (
     <div className={styles.container}>
@@ -26,7 +24,7 @@ export default function Index(props) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>List of users:</h1>
-        {/*<pre>{JSON.stringify(users, null, 2)}</pre>*/}
+        <pre>{JSON.stringify(users, null, 2)}</pre>
       </main>
 
     </div>

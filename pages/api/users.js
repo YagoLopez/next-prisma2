@@ -5,13 +5,9 @@ export default async (req, res) => {
   try {
     const prisma = new PrismaClient()
     const users = await prisma.user.findMany()
+    res.status(200).json(users)
 
-    res.statusCode = 200
-    res.json(users)
-
-  } catch (e) {
-    res.statusCode = 500
-    res.send(e)
-    console.error(e)
-  }
-}
+  } catch (error) {
+    console.error(error)
+    res.status(500).json(error)
+  }}

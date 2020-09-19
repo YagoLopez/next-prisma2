@@ -6,27 +6,29 @@ import styles from '../styles/Home.module.css'
 export async function getStaticProps(context) {
 
   let users;
+  let result
 
   try {
     const prisma = new PrismaClient()
-    const newUser = await prisma.user.create({
+    result = await prisma.user.create({
       data: {
         name: 'Alice',
         email: 'alice@prisma.io',
       },
     })
-    users = await prisma.user.findMany()
+    // users = await prisma.user.findMany()
     console.log('users', users)
   } catch (e) {
+    result = e
     console.error(e)
   }
 
   return {
-    props: {  }, // will be passed to the page component as props
+    props: { result }, // will be passed to the page component as props
   }
 }
 
-export default function Index({ users = {} }) {
+export default function Index({ result }) {
 
   return (
     <div className={styles.container}>
@@ -37,7 +39,8 @@ export default function Index({ users = {} }) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>List of users:</h1>
-        <pre>{JSON.stringify(users, null, 2)}</pre>
+        {/*<pre>{JSON.stringify(users, null, 2)}</pre>*/}
+        <pre>{JSON.stringify(result, null, 2)}</pre>
       </main>
 
     </div>
